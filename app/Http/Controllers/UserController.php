@@ -6,9 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
-    public function users(){
+    public function index(){
         $users = User::get();
         return view('admin.users.index', compact('users'));
     }
