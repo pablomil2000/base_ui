@@ -49,7 +49,12 @@
                                         class="form-control @error('camarero') is-invalid @enderror">
                                         <option value="0"> Sin Camarero </option>
                                         @foreach ($camareros as $camarero)
-                                            <option value="{{ $camarero->id }}">{{ $camarero->name }}</option>
+                                            @if ($camarero->id == $table->user_id)
+                                                <option value="{{ $camarero->id }}" selected>{{ $camarero->name }}</option>
+                                            @else
+
+                                                <option value="{{ $camarero->id }}">{{ $camarero->name }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
 
@@ -67,7 +72,7 @@
 
                                 <div class="col-md-6">
                                     <textarea class="form-control @error('Usuario') is-invalid @enderror" name="description"
-                                        id="description" cols="30" rows="5"></textarea>
+                                        id="description" cols="30" rows="5">{{ $table->description }}</textarea>
 
                                     @error('Usuario')
                                         <span class="invalid-feedback" role="alert">

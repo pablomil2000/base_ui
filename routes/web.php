@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TableController;
+use App\Http\Controllers\WaiterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,14 @@ use App\Http\Controllers\TableController;
 |
 */
 
-Route::middleware('auth')->group(function(){
+Route::middleware(['auth', 'admin'])->group(function(){
     Route::get('/', function () {
         return view('welcome');
     });
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', function () {
+        return view('welcome');
+    })->name('home');
 
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users');
 
@@ -40,6 +43,14 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/admin/users/{id}/delete', [UserController::class, 'delete'])->name('admin.users.delete');
     Route::get('/admin/table/{id}/delete', [Tablecontroller::class, 'delete'])->name('admin.table.delete');
+});
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/', [WaiterController::class, 'tables']);
+
+    Route::get('/home', function () {
+        return view('welcome');
+    })->name('home');
 });
 
 

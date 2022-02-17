@@ -13,6 +13,7 @@
                         @include('admin.partials.dashboard')
                     @else
                         {{ __('You are table') }}
+                        @include('waiter.partials.mesas')
                     @endif
 
                 </div>
