@@ -44,5 +44,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', [WaiterController::class, 'index'])->name('home');
 });
 
-
 Auth::routes();

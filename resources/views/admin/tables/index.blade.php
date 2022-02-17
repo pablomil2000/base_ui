@@ -112,7 +112,8 @@
                                         <td>{{ $table->description }}</td>
                                         <td>
                                             @if($table->user_id != 0)
-                                                {{ $table->User->name }}
+                                            {{ $table->User->name }}
+                                            {{-- @dd($table->User) --}}
                                             @else
                                                 Sin camarero
                                             @endif
