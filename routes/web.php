@@ -18,41 +18,37 @@ use App\Http\Controllers\WaiterController;
 |
 */
 
-Route::middleware(['auth', 'admin'])->group(function(){
+Route::middleware('auth')->group(function(){
+    Route::middleware('admin')->group(function(){
+        Route::get('/', function () {
+            return view('welcome');
+        });
+
+        Route::get('/admin', function () {
+            return view('welcome');
+        })->name('home');
+
+        Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users');
+
+        Route::get('/admin/tables', [TableController::class, 'index'])->name('admin.tables');
+
+
+        Route::POST('/admin/users/create', [UserController::class, 'registrarWaiter'])->name('admin.create.waiter');
+        Route::POST('/admin/tables/create', [TableController::class, 'registrarTable'])->name('admin.create.table');
+
+        Route::get('/admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+        Route::POST('/admin/users/{id}/edit', [UserController::class, 'update'])->name('admin.users.update');
+
+        Route::get('/admin/table/{id}/edit', [TableController::class, 'edit'])->name('admin.table.edit');
+        Route::POST('/admin/table/{id}/edit', [TableController::class, 'update'])->name('admin.table.update');
+
+        Route::get('/admin/users/{id}/delete', [UserController::class, 'delete'])->name('admin.users.delete');
+        Route::get('/admin/table/{id}/delete', [Tablecontroller::class, 'delete'])->name('admin.table.delete');
+    });
     Route::get('/', function () {
         return view('welcome');
     });
-
-    Route::get('/home', function () {
-        return view('welcome');
-    })->name('home');
-
-    Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users');
-
-    Route::get('/admin/tables', [TableController::class, 'index'])->name('admin.tables');
-
-
-    Route::POST('/admin/users/create', [UserController::class, 'registrarWaiter'])->name('admin.create.waiter');
-    Route::POST('/admin/tables/create', [TableController::class, 'registrarTable'])->name('admin.create.table');
-
-    Route::get('/admin/users/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
-    Route::POST('/admin/users/{id}/edit', [UserController::class, 'update'])->name('admin.users.update');
-
-    Route::get('/admin/table/{id}/edit', [TableController::class, 'edit'])->name('admin.table.edit');
-    Route::POST('/admin/table/{id}/edit', [TableController::class, 'update'])->name('admin.table.update');
-
-    Route::get('/admin/users/{id}/delete', [UserController::class, 'delete'])->name('admin.users.delete');
-    Route::get('/admin/table/{id}/delete', [Tablecontroller::class, 'delete'])->name('admin.table.delete');
 });
-
-Route::middleware(['auth'])->group(function(){
-    Route::get('/', [WaiterController::class, 'tables']);
-
-    Route::get('/home', function () {
-        return view('welcome');
-    })->name('home');
-});
-
 
 Auth::routes();
 
