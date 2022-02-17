@@ -36,8 +36,8 @@ class TableController extends Controller
     public function update(Request $request, $id){
         $table = Table::find($id);
         $validatedData = $request->validate([
-            'id' => ['required', 'integer', 'unique:tables,numMes'],    //revisar
-            'color' => ['required', 'string', 'min:7', 'max:7', 'unique:tables,color'],
+            'id' => ['required', 'integer'],
+            'color' => ['required', 'string', 'min:7', 'max:7'],
             'camarero' => ['required', 'int'],
             'description' => ['string'],
         ]);
@@ -47,6 +47,7 @@ class TableController extends Controller
         $table->description = $request->description;
         $table->user_id = $request->camarero;
         $table->save();
+
         return redirect(route('admin.tables'));
     }
 
