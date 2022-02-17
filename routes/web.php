@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/home', [HomeController::class, 'index'])->name('home');
 
         Route::get('admin/profile', [UserController::class, 'profile'])->name('profile');
-        Route::POST('admin/profile', [UserController::class, 'update'])->name('profile.update');
+        Route::POST('admin/profile', [UserController::class, 'adminUpdate'])->name('profile.update');
 
         Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users');
         Route::get('/admin/tables', [TableController::class, 'index'])->name('admin.tables');

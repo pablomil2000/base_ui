@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $users = User::get();
         return view('admin.users.index', compact('users'));
     }
 
-    public function registrarWaiter(Request $request){
+    public function registrarWaiter(Request $request)
+    {
 
         $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -36,12 +39,14 @@ class UserController extends Controller
         return back();
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $user = User::find($id);
         return view('admin.users.edit', compact('user'));
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $user = User::find($id);
 
         $validatedData = $request->validate([
@@ -55,9 +60,55 @@ class UserController extends Controller
         return redirect(route('admin.users'));
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $user = User::find($id);
         $user->delete();
         return back();
+    }
+
+    public function profile()
+    {
+        $user = User::find(auth()->user()->id);
+        return view('admin.profile', compact('user'));
+    }
+
+    public function adminUpdate(Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+        $ruta = "image/users/";
+
+        if ($request->bor) {
+            if ($user->image != "default.png") {
+                File::delete($ruta . $user->image);
+            }
+            $user->image = "default.png";
+            $user->save();
+            $mensaje = "Imagen actualizada";
+            return back()->with(compact("mensaje"));
+        }
+
+        if ($request->file("image")) {
+            $fichero = $request->file("image");
+            $ruta = public_path() . "\image\users/";
+            $nombre_fichero = uniqid() . "-" . $fichero->getClientOriginalName();
+            $movido = $fichero->move($ruta, $nombre_fichero);
+            // var_dump($ruta.$user->image);
+            if ($user->image != "default.png") {
+                File::delete($ruta . $user->image);
+            }
+        } else {
+            $nombre_fichero = "default.png";
+        }
+
+        $user->image = $nombre_fichero;
+        $user->save();
+        $mensaje = "Imagen actualizada";
+        return back()->with(compact("mensaje"));
+
+
+
+
+        // return back()->with(compact("mensaje"));
     }
 }
