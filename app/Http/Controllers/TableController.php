@@ -11,6 +11,15 @@ class TableController extends Controller
 {
     public function index(){
             $tables = table::get();
+            $camareros = User::WHERE('admin', '=', 0)->get();
+            return view('admin.tables.index', compact('tables', 'camareros'));
+    }
+
+    public function registrarTable(Request $request){
+
+        $validatedData = $request->validate([
+            'id' => ['required', 'integer'],
+            'color' => ['required', 'string', 'min:7', 'max:7'],
             'camarero' => ['required', 'int'],
             'description' => ['string'],
         ]);
@@ -38,7 +47,6 @@ class TableController extends Controller
         $table->description = $request->description;
         $table->user_id = $request->camarero;
         $table->save();
-
         return redirect(route('admin.tables'));
     }
 

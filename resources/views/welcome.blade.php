@@ -8,7 +8,6 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                @auth
                     @if (auth()->user()->admin)
                         {{ __('You are admin') }}
                         @include('admin.partials.dashboard')
@@ -16,9 +15,6 @@
                         {{ __('You are table') }}
                         @include('waiter.partials.tables')
                     @endif
-                @else
-
-                @endauth
 
                 </div>
             </div>
