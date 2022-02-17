@@ -26,6 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::middleware('admin')->group(function () {
         Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+        Route::get('admin/profile', [UserController::class, 'profile'])->name('profile');
+        Route::POST('admin/profile', [UserController::class, 'update'])->name('profile.update');
+
         Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users');
         Route::get('/admin/tables', [TableController::class, 'index'])->name('admin.tables');
 
@@ -40,6 +43,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/admin/users/{id}/delete', [UserController::class, 'delete'])->name('admin.users.delete');
         Route::get('/admin/table/{id}/delete', [Tablecontroller::class, 'delete'])->name('admin.table.delete');
+
     });
     Route::get('/home', [WaiterController::class, 'index'])->name('home');
 });

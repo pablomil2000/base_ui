@@ -49,4 +49,36 @@ class User extends Authenticatable
     public function table(){
         return $this->hasMany(User::class);
     }
+
+    public function getTotalCuentasAttribute(){
+        $mesas = table::where("user_id", auth()->user()->id)->get();
+        $total = 0;
+        foreach ($mesas as $mesa){
+            $total += $mesa->cuenta;
+        }
+        return $total;
+    }
+
+    public function getTotalPropinasAttribute(){
+        $mesas = table::where("user_id", auth()->user()->id)->get();
+        $total = 0;
+        foreach ($mesas as $mesa){
+            $total += ($mesa->cuenta)*0.1;
+        }
+        return $total;
+    }
+
+    public function getTotalCobrarAttribute(){
+        $mesas = table::where("user_id", auth()->user()->id)->get();
+        $total = 0;
+        $a=0;
+        $b=0;
+        foreach ($mesas as $mesa){
+            $a += $mesa->cuenta;
+            $b += ($mesa->cuenta)*0.10;
+
+            $total+=$a+$b;
+        }
+        return $total;
+    }
 }
