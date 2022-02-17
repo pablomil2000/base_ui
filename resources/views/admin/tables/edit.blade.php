@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Create Table') }}</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ url('/admin/table/'.$table->id.'/edit') }}">
+                        <form method="POST" action="{{ url('/admin/table/' . $table->id . '/edit') }}">
                             @csrf
                             <div class="row mb-3">
                                 <label for="numMes"
@@ -48,9 +48,20 @@
                                     <select name="camarero" id="camarero" required
                                         class="form-control @error('camarero') is-invalid @enderror">
                                         <option value="0"> Sin Camarero </option>
-                                        @foreach ($camareros as $camarero)
+                                        @if ($table->user_id != 0)
+                                            @foreach ($camareros as $camarero)
+                                                @if ($table->user_id == $camarero->id)
+                                                    <option value="{{ $camarero->id }}" selected>{{ $camarero->name }}
+                                                    </option>
+                                                @else
+                                                    <option value="{{ $camarero->id }}">{{ $camarero->name }}</option>
+                                                @endif
+                                            @endforeach
+                                            @else
+                                            @foreach ($camareros as $camarero)
                                             <option value="{{ $camarero->id }}">{{ $camarero->name }}</option>
-                                        @endforeach
+                                            @endforeach
+                                        @endif
                                     </select>
 
                                     @error('Salario')
@@ -66,8 +77,9 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Description') }}</label>
 
                                 <div class="col-md-6">
-                                    <textarea class="form-control @error('Usuario') is-invalid @enderror" name="description"
-                                        id="description" cols="30" rows="5"></textarea>
+                                    <textarea class="form-control @error('description') is-invalid @enderror"
+                                        name="description" id="description" cols="30"
+                                        rows="5">{{ $table->description }}</textarea>
 
                                     @error('Usuario')
                                         <span class="invalid-feedback" role="alert">
@@ -80,7 +92,7 @@
                             <div class="row mb-0">
 
                                 <div class="col-md-6 offset-md-4">
-                                    <a href="{{ Route('admin.tables') }}"class="btn btn-second">
+                                    <a href="{{ Route('admin.tables') }}" class="btn btn-second">
                                         {{ __('Volver') }}
                                     </a>
                                     <button type="submit" class="btn btn-primary">

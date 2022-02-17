@@ -18,7 +18,8 @@ class CreateTablesTable extends Migration
             $table->integer('numMes')->unique();
             $table->string('color')->unique();
             $table->string('description');
-            $table->foreignId('user_id')->constraint()->ondelete('null');
+            $table->string('cuenta');
+            $table->foreignId('user_id')->constraint()->ondelete('set 0');
             $table->timestamps();
         });
     }

@@ -30,7 +30,7 @@ class UserController extends Controller
         $user->salario = $request->Salario;
         $user->username = $request->Usuario;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = bcrypt($request->password);
         $user->save();
 
         return back();
