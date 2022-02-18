@@ -49,4 +49,11 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Auth::routes();
+
+// Auth::routes();
+
+//juntos evitan login y 404;
+Auth::routes(['register'=> false]);
+Route::get('/register', function(){
+    return redirect('/');
+});
