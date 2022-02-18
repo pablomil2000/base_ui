@@ -11,7 +11,7 @@ class TableController extends Controller
 {
     public function index(){
             $tables = table::get();
-            $camareros = User::WHERE('admin', '=', 0)->get();
+            $camareros = User::orderBy('name')->WHERE('admin', '=', 0)->get();
             return view('admin.tables.index', compact('tables', 'camareros'));
     }
 
@@ -52,7 +52,7 @@ class TableController extends Controller
 
     public function edit($id){
         $table = Table::find($id);
-        $camareros = User::WHERE('admin', '=', 0)->get();
+        $camareros = User::orderBy('name')->WHERE('admin', '=', 0)->get();
         return view('admin.tables.edit', compact('table', 'camareros'));
     }
 
