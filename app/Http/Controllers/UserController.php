@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 
 class UserController extends Controller
 {
@@ -49,7 +51,9 @@ class UserController extends Controller
         $mensaje = "Imagen actualizada";
         // return $user;
         return back()->with(compact("mensaje"));
+    }
 
-        // return back()->with(compact("mensaje"));
+    public function perfil(){
+
     }
 }

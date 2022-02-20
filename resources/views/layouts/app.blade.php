@@ -71,9 +71,9 @@
                                     <a class="nav-link" href="{{ route('favs') }}">{{ __('favs') }}</a>
                                 </li>
                             @endif
-                            @if (Route::has('upload'))
+                            @if (Route::has('post.upload'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('upload') }}">{{ __('upload') }}</a>
+                                    <a class="nav-link" href="{{ route('post.upload') }}">{{ __('upload') }}</a>
                                 </li>
                             @endif
                             <li class="nav-item dropdown">
@@ -83,12 +83,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('settings') }}">{{ __('settings') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                    @if (Route::has('Miperfil'))
+                                        <a class="dropdown-item"
+                                            href="{{ route('Miperfil') }}">{{ __('Mi perfil') }}</a>
+                                    @endif
+                                    <a class="dropdown-item" href="{{ route('settings') }}">{{ __('settings') }}</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         class="d-none">
@@ -101,8 +102,14 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
+
+            @if (session('message'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('message') }}
+                </div>
+            @endif
+
             @yield('content')
         </main>
     </div>
