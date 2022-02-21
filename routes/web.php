@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ComentController;
 // use App\Http\Controllers\LikesController;
 
 /*
@@ -34,6 +35,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/like/{id}', [UserController::class, 'like'])->name('like');
 
     Route::get('/post/{id}', [Postcontroller::class, 'show'])->name('post.show');
+    Route::post('/post/{id}', [ComentController::class, 'public'])->name('post.show');
+    Route::delete('/post/{id}', [ComentController::class, 'delete'])->name('post.show');
 });
 
 Auth::routes();

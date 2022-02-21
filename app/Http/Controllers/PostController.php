@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Coment;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-
     // Mostrar Post Inicio
     public function index(){
         $posts = Post::orderBy('created_at', 'DESC')->get();
@@ -18,7 +18,9 @@ class PostController extends Controller
     public function show($id){
         $post = Post::find($id);
         $likes = \DB::select('SELECT * from post_user WHERE user_id = ' . auth()->user()->id);
-        return view('post.show', compact('post', 'likes'));
+        $coments = Coment::where('post_id', $id)->get();
+        // return $coments;
+        return view('post.show', compact('post', 'likes', 'coments'));
     }
 
     // Publicar nuevo Post

@@ -18,4 +18,11 @@ class Post extends Model
     public function Userlikes(){
         return $this->belongsToMany(User::class);
     }
+
+    public function likesAttribute($post){
+        $sql ='SELECT * from post_user WHERE post_id = ' . $this->id;
+        // return $sql;
+        $likes = \DB::select($sql);
+        return $likes;
+    }
 }

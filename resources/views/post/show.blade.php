@@ -46,24 +46,43 @@
                                 </a>
                                 <?php
                             }
+                            $likes = count($post->likesAttribute(1));
+                            echo $likes;
                         ?>
                     <div class="row">
-                        <form method="post"></form>
-                        <textarea class="form-control" name="description" cols="40" rows="5" required
-                        style="resize: none;"></textarea>
-
+                        <form method="post">
+                            @csrf
+                            <textarea class="form-control" name="description" cols="40" rows="5" required
+                            style="resize: none;"></textarea>
+                            <button type="submit" class="btn btn-success">Enviar</button>
+                            <a href="{{ route('home') }}"><button type="button" class="btn btn-outline-info">Volver</button>
+                            </a>
+                        </form>
                     </div>
-
-                    {{-- <div class="row"> --}}
-
-
-                        <a href="{{ route('home') }}"><button type="button" class="btn btn-outline-info">Volver</button>
-                        </a>
-                        {{-- <a href="{{ url('/post/'.$post->id) }}"><button class="btn btn-primary btn-sm">Comanetarios</button></a> --}}
-                    {{-- </div> --}}
                 </div>
             </div>
-
+            @foreach ($coments as $coment)
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">{{ $post->User->nick }}</div>
+                    <div class="card-body" style="background-color: $blue-200">
+                        <div class="row">
+                            {{ $coment->description }}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        @if ($coment->user_id == auth()->user()->id || $post->user_id == auth()->user()->id)
+                            <form method="post">
+                                @csrf
+                                @method('delete')
+                                <input type="hidden" name="coment" value="{{ $coment->id }}">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            @endforeach
         </div>
     </div>
 </div>
