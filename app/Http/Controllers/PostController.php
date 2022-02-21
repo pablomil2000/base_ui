@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\Likes;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,13 +11,13 @@ class PostController extends Controller
     // Mostrar Post Inicio
     public function index(){
         $posts = Post::orderBy('created_at', 'DESC')->get();
-        $likes = Likes::where('user_id', auth()->user()->id)->get();
+        $likes = \DB::select('SELECT * from post_user WHERE user_id = ' . auth()->user()->id);
         return view('home', compact('posts', 'likes'));
     }
+
     public function show($id){
         $post = Post::find($id);
-        // return $posts;
-        $likes = Likes::where('user_id', auth()->user()->id)->get();
+        $likes = \DB::select('SELECT * from post_user WHERE user_id = ' . auth()->user()->id);
         return view('post.show', compact('post', 'likes'));
     }
 

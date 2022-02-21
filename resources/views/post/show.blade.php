@@ -25,15 +25,7 @@
 
 
                 <div class="card-footer">
-                    <div class="row">
-                        <form method="post"></form>
-                        <textarea class="form-control" name="description" cols="40" rows="5" required
-                        style="resize: none;"></textarea>
-
-                    </div>
-
-                    {{-- <div class="row"> --}}
-                        <?php
+                    <?php
                         $a=0;
                             foreach ($likes as $like){
                                 if ($like->post_id == $post->id){
@@ -49,12 +41,21 @@
                                 <?php
                             }else{
                                 ?>
-                                <a href="{{ url('/dlike/'.$post->id) }}">
+                                <a href="{{ url('/like/'.$post->id) }}">
                                     <button type="" class="btn"><img width="64" height="64" src="{{ asset('image\Likes\hearts-rojo-64.png') }}" alt=""></button>
                                 </a>
                                 <?php
                             }
                         ?>
+                    <div class="row">
+                        <form method="post"></form>
+                        <textarea class="form-control" name="description" cols="40" rows="5" required
+                        style="resize: none;"></textarea>
+
+                    </div>
+
+                    {{-- <div class="row"> --}}
+
 
                         <a href="{{ route('home') }}"><button type="button" class="btn btn-outline-info">Volver</button>
                         </a>

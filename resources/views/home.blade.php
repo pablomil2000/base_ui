@@ -38,7 +38,7 @@
                                 <?php
                             }else{
                                 ?>
-                                <a href="{{ url('/dlike/'.$post->id) }}">
+                                <a href="{{ url('/like/'.$post->id) }}">
                                     <button type="" class="btn"><img width="64" height="64" src="image\Likes\hearts-rojo-64.png" alt=""></button>
                                 </a>
                                 <?php

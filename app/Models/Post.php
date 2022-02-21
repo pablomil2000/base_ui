@@ -12,4 +12,10 @@ class Post extends Model
     public function User(){
         return $this->BelongsTo(User::class);
     }
+
+    // Relacion N:M
+
+    public function Userlikes(){
+        return $this->belongsToMany(User::class);
+    }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\LikesController;
+// use App\Http\Controllers\LikesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +30,8 @@ Route::middleware('auth')->group(function(){
     Route::POST('/upload', [PostController::class, 'publish'])->name('post.upload');
     Route::get('/home', [PostController::class, 'index'])->name('home');
 
-    Route::get('/like/{id}', [LikesController::class, 'like'])->name('like');
-    Route::get('/dlike/{id}', [LikesController::class, 'dlike'])->name('dlike');
+    // Route::get('/like/{id}', [LikesController::class, 'like'])->name('like');
+    Route::get('/like/{id}', [UserController::class, 'like'])->name('like');
 
     Route::get('/post/{id}', [Postcontroller::class, 'show'])->name('post.show');
 });
