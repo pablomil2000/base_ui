@@ -67,9 +67,8 @@ class UserController extends Controller
         return redirect(url('/home'))-> with(compact("message"));
     }
 
-    public function perfil(){
-        $user = User::find(auth()->user()->id);
-        // return $user;
+    public function perfil($id){
+        $user = User::findOrfail($id);
         return view('users.perfil', compact('user'));
     }
 }
