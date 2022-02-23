@@ -57,11 +57,13 @@ class UserController extends Controller
         $user = auth()->user();
         $likes = \DB::select('SELECT * from post_user WHERE post_id = ' . $id. ' and user_id =  '.$user->id);
         if (!$likes) {
+            $message = 'Te gusta este post';
             $user->Postlikes()->attach($id);
         }else {
+            $message = 'Ya no te gusta este post';
             $user->Postlikes()->detach($id);
         }
-        $message = 'Te gusta este POST';
+
         return redirect(url('/home'))-> with(compact("message"));
     }
 
