@@ -35,8 +35,13 @@ Route::middleware('auth')->group(function(){
     Route::get('/like/{id}', [UserController::class, 'like'])->name('like');
 
     Route::get('/post/{id}', [Postcontroller::class, 'show'])->name('post.show');
-    Route::post('/post/{id}', [ComentController::class, 'public'])->name('post.show');
-    Route::delete('/post/{id}', [ComentController::class, 'delete'])->name('post.show');
+    Route::post('/post/{id}', [ComentController::class, 'public'])->name('post.publiComent');
+
+    Route::get('/post/{id}/edit', [Postcontroller::class, 'edit'])->name('post.edit');
+    Route::post('/post/{id}/edit', [Postcontroller::class, 'show'])->name('post.update');
+
+    Route::delete('/post/{id}', [ComentController::class, 'delete'])->name('post.delete.coment');
+    Route::delete('/post/{id}/delete', [PostController::class, 'delete'])->name('post.delete');
 });
 
 Auth::routes();

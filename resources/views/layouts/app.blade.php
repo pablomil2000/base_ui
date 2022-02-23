@@ -83,9 +83,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    @if (Route::has('Miperfil'))
+                                    @if (Route::has('perfil'))
                                         <a class="dropdown-item"
-                                            href="{{ route('Miperfil') }}">{{ __('Mi perfil') }}</a>
+                                            href="{{ url('/perfil/' .auth()->user()->id) }}">{{ __('Mi perfil') }}</a>
                                     @endif
                                     <a class="dropdown-item" href="{{ route('settings') }}">{{ __('settings') }}</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

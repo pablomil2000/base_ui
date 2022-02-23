@@ -21,9 +21,6 @@
                     <p>Publicado: {{ $post->created_at->diffForHumans() }}</p>
                     <p>Descripcion: {{ $post->description }}</p>
                 </div>
-
-
-
                 <div class="card-footer">
                     <?php
                         $a=0;
@@ -46,21 +43,37 @@
                                 </a>
                                 <?php
                             }
-                            $likes = count($post->likesAttribute(1));
+                            $likes = count($post->likesAttribute());
+                            $numComent = count($post->numComentAtribute());
                             echo $likes;
                         ?>
+                        <button class="btn btn-primary btn-sm">Comentarios ({{ $numComent }})</button>
+
+                        @if ($post->user_id == auth()->user()->id)
+                        <a href="/post/{{ $post->id}}/edit"><button class="btn btn-success btn-sm">Editar</button></a>
+                        <form method="post" action="/post/{{ $post->id }}/delete">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-warning btn-sm">Eliminar</button>
+                        </form>
+
+                        @endif
+
+                        <a href="{{ route('home') }}"><button type="button" class="btn btn-outline-info btn-sm">Volver</button></a>
                     <div class="row">
+
+                        <h1>Comentatios({{ $numComent }}) </h1>
                         <form method="post">
                             @csrf
                             <textarea class="form-control" name="description" cols="40" rows="5" required
                             style="resize: none;"></textarea>
                             <button type="submit" class="btn btn-success">Enviar</button>
-                            <a href="{{ route('home') }}"><button type="button" class="btn btn-outline-info">Volver</button>
-                            </a>
+
                         </form>
                     </div>
                 </div>
             </div>
+
             @foreach ($coments as $coment)
             <div class="row">
                 <div class="card">
@@ -70,6 +83,7 @@
                             {{ $coment->description }}
                         </div>
                     </div>
+
                     <div class="card-footer">
                         @if ($coment->user_id == auth()->user()->id || $post->user_id == auth()->user()->id)
                             <form method="post">

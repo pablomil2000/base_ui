@@ -19,10 +19,18 @@ class Post extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function likesAttribute($post){
+    public function likesAttribute(){
         $sql ='SELECT * from post_user WHERE post_id = ' . $this->id;
         // return $sql;
         $likes = \DB::select($sql);
         return $likes;
+    }
+
+    public function numComentAtribute(){
+        $sql ='SELECT * from coments WHERE post_id = ' . $this->id;
+        // return $sql;
+        $numcoment = \DB::select($sql);
+        // var_dump($numcoment);
+        return $numcoment;
     }
 }

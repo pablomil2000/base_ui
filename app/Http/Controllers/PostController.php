@@ -48,4 +48,15 @@ class PostController extends Controller
         $message = 'Post Publicado';
         return redirect(url('/home'))-> with(compact("message"));
     }
+
+    public function delete($id){
+        $post = Post::findOrfail($id);
+        $post->delete();
+        return redirect(url('/home'));
+    }
+
+    public function edit($id){
+        $post = Post::findOrfail($id);
+        return view('/post/edit', compact('post'));
+    }
 }
