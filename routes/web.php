@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/configuracion',[UserController::class, 'setting'])->name('settings');
     Route::post('/configuracion',[UserController::class, 'userUpdate'])->name('settings.update');
 
-    Route::get('/perfil',[UserController::class, 'userUpdate'])->name('Miperfil');
+    Route::get('/perfil',[UserController::class, 'perfil'])->name('Miperfil');
 
     Route::get('/upload', [PostController::class, 'upload'])->name('post.upload');
     Route::POST('/upload', [PostController::class, 'publish'])->name('post.upload');

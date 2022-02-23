@@ -24,6 +24,7 @@
 
                             <?php
                         $a=0;
+                            // var_dump($likes);
                             foreach ($likes as $like){
                                 if ($like->post_id == $post->id){
                                     $a++;
@@ -45,8 +46,8 @@
                             </a>
                             <?php
                             }
-                            $likes = count($post->likesAttribute(1));
-                            echo $likes;
+                            $mg = count($post->likesAttribute(1));
+                            echo $mg;
                         ?>
                             <a href="{{ url('/post/' . $post->id) }}"><button
                                     class="btn btn-primary btn-sm">Comanetarios</button></a>

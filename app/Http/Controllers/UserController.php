@@ -14,7 +14,7 @@ class UserController extends Controller
 
         $user = User::find(auth()->user()->id);
         // return $user;
-        return view('users.setting', compact('user', 'likes'));
+        return view('users.setting', compact('user'));
     }
 
     public function userUpdate(Request $request)
@@ -48,7 +48,7 @@ class UserController extends Controller
         $user->email= $request->email;
         $user->image = $nombre_fichero;
         $user->save();
-        $mensaje = "Imagen actualizada";
+        $mensaje = "Imagen subida";
         // return $user;
         return back()->with(compact("mensaje"));
     }
@@ -56,17 +56,18 @@ class UserController extends Controller
     public function like($id) {
         $user = auth()->user();
         $likes = \DB::select('SELECT * from post_user WHERE post_id = ' . $id. ' and user_id =  '.$user->id);
-
         if (!$likes) {
             $user->Postlikes()->attach($id);
         }else {
             $user->Postlikes()->detach($id);
         }
-        $message="";
-        return back()->with(compact("message"));
+        $message = 'Te gusta este POST';
+        return redirect(url('/home'))-> with(compact("message"));
     }
 
     public function perfil(){
-
+        $user = User::find(auth()->user()->id);
+        // return $user;
+        return view('users.perfil', compact('user'));
     }
 }
