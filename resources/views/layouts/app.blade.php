@@ -68,12 +68,12 @@
                             @endif
                             @if (Route::has('favs'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('favs') }}">{{ __('favs') }}</a>
+                                    <a class="nav-link" href="{{ route('favs') }}">Mis Favoritas</a>
                                 </li>
                             @endif
                             @if (Route::has('post.upload'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('post.upload') }}">{{ __('upload') }}</a>
+                                    <a class="nav-link" href="{{ route('post.upload') }}">Subir imagen</a>
                                 </li>
                             @endif
                             <li class="nav-item dropdown">

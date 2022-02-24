@@ -11,44 +11,43 @@
             @endif --}}
                 @foreach ($posts as $post)
                     <div class="card">
-                        <div class="card-header"><a href="{{ url('/perfil/'.$post->user_id) }}">{{ $post->User->nick }}</a></div>
+                        <div class="card-header"><a
+                                href="{{ url('/perfil/' . $post->user_id) }}">{{ $post->User->nick }}</a></div>
                         <div class="card-body">
                             <div class="row">
-                                <img src="image\post\{{ $post->url }}" alt="">
+                                <img height="300" src="image\post\{{ $post->url }}" alt="">
                             </div>
                             <p>Publicado: {{ $post->created_at->diffForHumans() }}</p>
                             <p>Descripcion: {{ $post->description }}</p>
                         </div>
 
                         <div class="card-footer">
-
                             <?php
-                        $a=0;
-                            // var_dump($likes);
-                            foreach ($likes as $like){
-                                if ($like->post_id == $post->id){
-                                    $a++;
+                                $a=0;
+                                // var_dump($likes);
+                                foreach ($likes as $like){
+                                    if ($like->post_id == $post->id){
+                                        $a++;
+                                    }
                                 }
-                            }
 
-                            if ($a==0) {
-                                ?>
-                            <a href="{{ url('/like/' . $post->id) }}">
-                                <img width="64" height="64" src="{{ asset('image\Likes\hearts-gris-64.png') }}" alt="">
-                            </a>
+                                if ($a==0) {
+                            ?>
+                                <a href="{{ url('/like/' . $post->id) }}">
+                                    <img width="64" height="64" src="{{ asset('image\Likes\hearts-gris-64.png') }}" alt="">
+                                </a>
                             <?php
-                            }else{
-                                ?>
-                            <a href="{{ url('/like/' . $post->id) }}">
+                                }else{
+                            ?>
+                                <a href="{{ url('/like/' . $post->id) }}">
                                 <img width="64" height="64" src="{{ asset('image\Likes\hearts-rojo-64.png') }}" alt="">
-                            </a>
+                                </a>
                             <?php
-                            }
-                            $mg = count($post->likesAttribute(1));
-                            echo $mg;
-                        ?>
-                            <a href="{{ url('/post/' . $post->id) }}"><button
-                                    class="btn btn-primary btn-sm">Comanetarios</button></a>
+                                }
+                                $mg = count($post->likesAttribute(1));
+                                echo $mg;
+                            ?>
+                                <a href="{{ url('/post/' . $post->id) }}"><button class="btn btn-primary btn-sm">Comanetarios</button></a>
 
                         </div>
                     </div>

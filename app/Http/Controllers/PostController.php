@@ -84,5 +84,20 @@ class PostController extends Controller
         $message = 'Post actualizado conrrectamente';
         return redirect(url('/home'))-> with(compact("message"));
     }
+
+    public function favs(){
+        $sql ='SELECT id from post_user WHERE user_id = 1';
+        $posts = \DB::select($sql);
+
+        foreach($posts as $post){
+            $total[]=$post->id;
+        }
+        $total = implode(',', $total);
+
+        $sql ='SELECT * from posts WHERE id in ('.$total.')';
+        $posts = \DB::select($sql);
+        // return $posts;
+        return view('post.favs', compact('posts'));
+    }
 }
 
