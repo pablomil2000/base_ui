@@ -103,13 +103,17 @@
             </div>
         </nav>
         <main class="py-4">
-
-            @if (session('message'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('message') }}
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                    @if (session('message'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('message') }}
+                        </div>
+                    @endif
                 </div>
-            @endif
-
+                </div>
+            </div>
             @yield('content')
         </main>
     </div>

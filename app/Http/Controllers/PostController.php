@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\File;
 use App\Models\Post;
 use App\Models\Coment;
 use Illuminate\Http\Request;
@@ -59,4 +60,27 @@ class PostController extends Controller
         $post = Post::findOrfail($id);
         return view('/post/edit', compact('post'));
     }
+
+    public function update(Request $request, $id){
+        $post = Post::findOrfail($id);
+        $validatedData = $request->validate([
+            'description' => ['required', 'string'],
+        ]);
+
+        if ($request->file("image")) {
+            $fichero = $request->file("image");
+            $ruta = public_path() . "\image\POST/";
+            $nombre_fichero = uniqid() . "-" . $fichero->getClientOriginalName();
+            $movido = $fichero->move($ruta, $nombre_fichero);
+            File::delete($ruta . $post->url);
+            $post->url = $nombre_fichero;
+        }
+
+        $post->description = $request->description;
+        $post->save();
+
+        $message = 'Post actualizado conrrectamente';
+        return redirect(url('/home'))-> with(compact("message"));
+    }
 }
+

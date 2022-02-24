@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/post/{id}', [ComentController::class, 'public'])->name('post.publiComent');
 
     Route::get('/post/{id}/edit', [Postcontroller::class, 'edit'])->name('post.edit');
-    Route::post('/post/{id}/edit', [Postcontroller::class, 'show'])->name('post.update');
+    Route::post('/post/{id}/edit', [Postcontroller::class, 'update'])->name('post.update');
 
     Route::delete('/post/{id}', [ComentController::class, 'delete'])->name('post.delete.coment');
     Route::delete('/post/{id}/delete', [PostController::class, 'delete'])->name('post.delete');

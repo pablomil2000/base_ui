@@ -11,7 +11,7 @@
             @endif --}}
                 @foreach ($posts as $post)
                     <div class="card">
-                        <div class="card-header">{{ $post->User->nick }}</div>
+                        <div class="card-header"><a href="{{ url('/perfil/'.$post->user_id) }}">{{ $post->User->nick }}</a></div>
                         <div class="card-body">
                             <div class="row">
                                 <img src="image\post\{{ $post->url }}" alt="">
