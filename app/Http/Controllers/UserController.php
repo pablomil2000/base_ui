@@ -10,8 +10,13 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    public function setting(){
+    public function index(){
+        $users=User::all();
+        // return $users;
+        return view('users.buscar', compact ('users'));
+    }
 
+    public function setting(){
         $user = User::find(auth()->user()->id);
         // return $user;
         return view('users.setting', compact('user'));

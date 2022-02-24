@@ -30,7 +30,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/upload', [PostController::class, 'upload'])->name('post.upload');
     Route::POST('/upload', [PostController::class, 'publish'])->name('post.upload');
     Route::get('/home', [PostController::class, 'index'])->name('home');
-    Route::get('/MisFavoritas', [PostController::class, 'favs'])->name('favs');
+    Route::get('/favoritas', [PostController::class, 'favs'])->name('favs');
+    Route::get('/usuarios', [UserController::class, 'index'])->name('users');
 
     // Route::get('/like/{id}', [LikesController::class, 'like'])->name('like');
     Route::get('/like/{id}', [UserController::class, 'like'])->name('like');
