@@ -48,18 +48,18 @@
                             echo $likes;
                         ?>
                         <button class="btn btn-primary btn-sm">Comentarios ({{ $numComent }})</button>
-
+                        <a href="{{ route('home') }}"><button type="button" class="btn btn-outline-info btn-sm">Volver</button></a>
                         @if ($post->user_id == auth()->user()->id)
                         <a href="/post/{{ $post->id}}/edit"><button class="btn btn-success btn-sm">Editar</button></a>
                         <form method="post" action="/post/{{ $post->id }}/delete">
+                            <button type="submit" class="btn btn-warning btn-sm">Eliminar</button>
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-warning btn-sm">Eliminar</button>
                         </form>
 
                         @endif
 
-                        <a href="{{ route('home') }}"><button type="button" class="btn btn-outline-info btn-sm">Volver</button></a>
+
                     <div class="row">
 
                         <h1>Comentatios({{ $numComent }}) </h1>

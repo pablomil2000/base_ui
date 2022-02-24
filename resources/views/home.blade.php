@@ -34,15 +34,13 @@
                             if ($a==0) {
                                 ?>
                             <a href="{{ url('/like/' . $post->id) }}">
-                                <button type="" class="btn"><img width="64" height="64"
-                                        src="{{ asset('image\Likes\hearts-gris-64.png') }}" alt=""></button>
+                                <img width="64" height="64" src="{{ asset('image\Likes\hearts-gris-64.png') }}" alt="">
                             </a>
                             <?php
                             }else{
                                 ?>
                             <a href="{{ url('/like/' . $post->id) }}">
-                                <button type="" class="btn"><img width="64" height="64"
-                                        src="{{ asset('image\Likes\hearts-rojo-64.png') }}" alt=""></button>
+                                <img width="64" height="64" src="{{ asset('image\Likes\hearts-rojo-64.png') }}" alt="">
                             </a>
                             <?php
                             }

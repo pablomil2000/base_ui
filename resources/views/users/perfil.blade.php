@@ -19,6 +19,26 @@
 
         </div>
     </div>
+
+    <div class="card" style="margin-top:2em">
+        <div class="card-header">Actividad</div>
+        <div class="card-body">
+            <div class="row">
+                {{-- @dd($user) --}}
+                <div class="col-4">
+                    <p><span style="color: #0d88ec">Publicaciones: </span>{{ $user->nPost() }}</p>
+                    <p><span style="color: #0d88ec">Likes: </span>{{ $user->nLikes() }}</p>
+                    <p><span style="color: #0d88ec">Comentarios: </span>{{ $user->nComents() }}</p>
+                </div>
+                <div class="col-8">
+                    @foreach($user->myPost() as $post)
+                        <a href="/post/{{ $post->id}}"><img src="{{ asset('image/post/' . $post->url) }}" width="150" height="150"></a>
+                    @endforeach
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 @stop

@@ -52,6 +52,8 @@ class PostController extends Controller
 
     public function delete($id){
         $post = Post::findOrfail($id);
+        $ruta = public_path() . "\image\POST/";
+        File::delete($ruta . $post->url);
         $post->delete();
         return redirect(url('/home'));
     }

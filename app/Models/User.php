@@ -55,4 +55,38 @@ class User extends Authenticatable
     public function Postlikes(){
         return $this->belongsToMany(Post::class);
     }
+
+
+
+    // Campo calculado Nº post
+    public function nPost(){
+
+        $sql ='SELECT * from posts WHERE user_id = ' . $this->id;
+        // return $sql;
+        $post = \DB::select($sql);
+        $total = count($post);
+        return $total.' imagen/es';
+    }
+
+    public function nLikes(){
+        $sql ='SELECT * from post_user WHERE user_id = ' . $this->id;
+        // return $sql;
+        $post = \DB::select($sql);
+        $total = count($post);
+        return $total.' me gusta';
+    }
+
+    public function nComents(){
+        $sql ='SELECT * from coments WHERE user_id = ' . $this->id;
+        // return $sql;
+        $post = \DB::select($sql);
+        $total = count($post);
+        return $total.' comentario';
+    }
+
+    public function myPost(){
+        $sql ='SELECT * from posts WHERE user_id = ' .$this->id;
+        $posts = \DB::select($sql);
+        return $posts;
+    }
 }
