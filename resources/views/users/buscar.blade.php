@@ -8,15 +8,15 @@
             <form action="" method="get" class="card card-sm">
                 <div class="col-8">
                     <input type="search" name="" id="" class="form-control">
+                    <button type="submit" value="" class="btn btn-primary">Buscar</button>
                 </div>
-                <button type="submit" value="" class="btn btn-primary">Buscar</button>
             </form>
         </div>
 
         @foreach ($users as $user)
             @if ($user->id != auth()->user()->id)
                 <div class="card">
-                    <div class="card-header">Nick: {{ $user->nick }}</div>
+                    <div class="card-header">Nick: {{'@'. $user->nick }}</div>
                     <div class="card-body">
                         <div class="row">
                             {{-- @dd($user) --}}
