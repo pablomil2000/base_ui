@@ -86,17 +86,17 @@ class PostController extends Controller
     }
 
     public function favs(){
-        $sql ='SELECT id from post_user WHERE user_id = 1';
+        $sql ='SELECT * from post_user WHERE user_id = '.auth()->user()->id;
         $posts = \DB::select($sql);
-
+        // return $posts;
         foreach($posts as $post){
-            $total[]=$post->id;
+            $total[]=$post->post_id;
         }
         $total = implode(',', $total);
 
         $sql ='SELECT * from posts WHERE id in ('.$total.')';
         $posts = \DB::select($sql);
-        // return $posts;
+        // return $sql;
         return view('post.favs', compact('posts'));
     }
 }

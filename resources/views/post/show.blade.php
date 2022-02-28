@@ -77,7 +77,7 @@
             @foreach ($coments as $coment)
             <div class="row">
                 <div class="card">
-                    <div class="card-header">{{ $post->User->nick }}</div>
+                    <div class="card-header"><a href="{{ url('/perfil/'.$post->User->id) }}">{{ '@'.$post->User->nick }}</a></div>
                     <div class="card-body" style="background-color: $blue-200">
                         <div class="row">
                             {{ $coment->description }}

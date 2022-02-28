@@ -10,8 +10,13 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    public function index(){
-        $users=User::all();
+    public function index(Request $request){
+        
+        if (isset($request->buscar)) {
+            $users=User::where('name','like','%'.$request->buscar.'%')->orwhere('nick','like','%'.$request->buscar.'%')->paginate(3);
+            return view('users.buscar', compact ('users'));
+        }
+        $users=User::paginate(2);
         // return $users;
         return view('users.buscar', compact ('users'));
     }
