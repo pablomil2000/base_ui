@@ -38,6 +38,10 @@ Route::middleware('auth')->group(function(){
     Route::post('/edit', [UserController::class, 'uldateProfile'])->name('perfil.edit');
 
     Route::get('/deleteTweet/{id}', [TweetController::class, 'deleteTweet'])->name('tweet.delete');
+
+    Route::get('test', function(){
+        return view('test');
+    });
 });
 
 Auth::routes();

@@ -52,4 +52,12 @@ class User extends Authenticatable
     public function Coments(){
         return $this->hasMany('App\Models\Coment');
     }
+
+    public function Sigue() {
+        return $this->hasMany('App\Models\Follow', 'user_id');
+    }
+
+    public function Segido() {
+        return $this->hasMany('App\Models\Follow', 'follow_id');
+    }
 }
