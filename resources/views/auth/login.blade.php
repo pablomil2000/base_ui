@@ -1,4 +1,8 @@
-@extends('layouts.app')
+@extends('layout')
+
+@section('menu')
+    @include('partials.menuLogin')
+@endsection
 
 @section('content')
 <div class="container">

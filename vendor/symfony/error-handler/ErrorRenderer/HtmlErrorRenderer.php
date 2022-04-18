@@ -95,10 +95,10 @@ class HtmlErrorRenderer implements ErrorRendererInterface
     public function getStylesheet(): string
     {
         if (!$this->debug) {
-            return $this->include('assets/css/error.css');
+            return $this->include('css/error.css');
         }
 
-        return $this->include('assets/css/exception.css');
+        return $this->include('css/exception.css');
     }
 
     public static function isDebug(RequestStack $requestStack, bool $debug): \Closure

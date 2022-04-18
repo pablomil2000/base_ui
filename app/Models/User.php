@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'nick',
+        'imgPerfil',
     ];
 
     /**
@@ -41,4 +43,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function Tweets(){
+        return $this->hasMany('App\Models\Tweet');
+    }
+
+    public function Coments(){
+        return $this->hasMany('App\Models\Coment');
+    }
 }
