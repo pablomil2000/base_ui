@@ -11,7 +11,7 @@
         <button class="tweetBox__tweetButton">Tweet</button>
         <script>
             $('#summernote').summernote({
-                placeholder: 'Hello stand alone ui',
+                placeholder: '<h1>¿Que esta pasando?</h1>',
                 name:'tweet',
                 height: 120,
                 width: '100%',

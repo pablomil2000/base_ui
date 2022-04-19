@@ -20,6 +20,7 @@
         <!-- tweetbox ends -->
 
         <!-- post starts -->
+        {{-- @dd($tweets) --}}
         @foreach ($tweets as $tweet)
             <div class="post">
                 <div class="post__avatar">

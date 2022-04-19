@@ -1,1 +1,1 @@
-@dd(Auth()->user()->Segido());
+{{ Auth()->user()->seguido()->count() }}

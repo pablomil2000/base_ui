@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tweet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class TweetController extends Controller
@@ -23,7 +24,11 @@ class TweetController extends Controller
     }
 
     public function loadTweets(){
-        $tweets = Tweet::orderBy('created_at', 'desc')->get();
+        //solo usuarios segidos
+        $segidos = auth()->user()->Sigue;
+        $segidos = array_column($segidos->toArray(), 'follow_id');
+
+        $tweets = Tweet::whereIn('user_id', $segidos)->orderBy('created_at', 'desc')->get();
         return view('inicio', compact('tweets'));
     }
 

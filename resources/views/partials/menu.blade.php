@@ -6,6 +6,11 @@
     </div>
 
     <div class="sidebarOption">
+        <span class="material-icons"> search </span>
+        <a href="/search" style="text-decoration: none; color: black"><h2>Buscar</h2></a>
+    </div>
+
+    <div class="sidebarOption">
         <span class="material-icons"> account_circle </span>
         <a href="/users/{{ Auth::id(); }}" style="text-decoration: none; color: black"><h2>Perfil</h2></a>
     </div>
@@ -21,7 +26,6 @@
             @csrf
         </form>
     </div>
-
 
     <button class="sidebar__tweet">Tweet</button>
 </div>

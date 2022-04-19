@@ -18,12 +18,34 @@
                             <a href="/edit" class="btn btn-primary">Editar</a>
                         </div>
                     @else
-                    <div style="margin-left: 20vw">
-                        <a href="/follow" class="btn btn-primary">Seguir</a>
-                    </div>
+                        {{-- {{ auth()->user()->seguido()->where('user_id', $user->id)->first() }} --}}
+
+                        @if (!auth()->user()->seguido()->where('user_id', $user->id)->first())
+                            <div style="margin-left: 20vw">
+                                <a href="/follow/{{ $user->id }}" class="btn btn-primary">Seguir</a>
+                            </div>
+                        @else
+                            <div style="margin-left: 20vw">
+                                <a href="/unfollow/{{ $user->id }}" class="btn btn-danger">Dejar de seguir</a>
+                            </div>
+                        @endif
+
                     @endif
                 </div>
-                @foreach ($tweets = $user->tweets()->orderBy('created_at', 'desc')->get() as $tweet)
+
+                <div class="feed__header" style="display:flex">
+                    <div class="col">
+                        <h2>Publicaciones: {{ $user->tweets()->count() }}</h2>
+                    </div>
+                    <div class="col">
+                        <h2>Seguidores: {{ $user->seguido()->count() }}</h2>
+                    </div>
+                    <div class="col">
+                        <h2>Sigue: {{ $user->Sigue()->count() }}</h2>
+                    </div>
+                </div>
+                @foreach ($tweets = $user->tweets()->orderBy('created_at', 'desc')->get()
+    as $tweet)
                     <div class="post">
                         <div class="post__avatar">
                             <img src="{{ asset('images/perfil/' . $user->imgPerfil) }}" alt="img de usuario" />
@@ -46,17 +68,21 @@
                             <div class="post__footer">
                                 <div class="row">
                                     <div class="d-flex justify-content-around">
-                                        <div class="p-2"><span class="material-icons"> chat_bubble_outline </span></div>
-                                        <div class="p-2"><span class="material-icons"> favorite_border </span></div>
+                                        <div class="p-2"><span class="material-icons"> chat_bubble_outline
+                                            </span></div>
+                                        <div class="p-2"><span class="material-icons"> favorite_border
+                                            </span></div>
                                         <div class="p-2">
                                             <div class="dropdown">
                                                 <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                    aria-expanded="false" style="border: 0; background-color: transparent">
+                                                    aria-expanded="false"
+                                                    style="border: 0; background-color: transparent">
                                                     <span class="material-icons"> settings </span>
                                                 </button>
-        
+
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                    <li><a class="dropdown-item" href="deleteTweet/{{ $tweet->id }}">borrar</a></li>
+                                                    <li><a class="dropdown-item"
+                                                            href="deleteTweet/{{ $tweet->id }}">borrar</a></li>
                                                     {{-- <li><a class="dropdown-item" href="#">Another action</a></li> --}}
                                                     {{-- <li><a class="dropdown-item" href="#">Something else here</a></li> --}}
                                                 </ul>
@@ -64,7 +90,7 @@
                                         </div>
                                     </div>
                                 </div>
-        
+
                             </div>
                         </div>
                     </div>
