@@ -5,20 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tweet extends Model
+class Like extends Model
 {
     use HasFactory;
-
 
     public function User(){
         return $this->belongsTo('App\Models\User');
     }
 
-    public function Comment(){
-        return $this->hasMany('App\Models\Comment');
-    }
-
-    public function Like(){
-        return $this->hasMany('App\Models\Like');
+    public function tweet(){
+        return $this->belongsTo('App\Models\Tweet');
     }
 }

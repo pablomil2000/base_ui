@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\FollowController;
@@ -28,8 +29,8 @@ use App\Http\Controllers\searchController;
 // solos pueden entrar usuarios logeados
 Route::middleware('auth')->group(function(){
     //rutas de inicio
-    Route::get('/home', [TweetController::class, 'loadTweets'])->name('home');
-    Route::get('/', [TweetController::class, 'loadTweets']);
+    Route::get('/home', [TweetController::class, 'loadTweetsFollows'])->name('home');
+    Route::get('/', [TweetController::class, 'loadTweetsFollows']);
 
     //Gestion de tweets
     Route::post('/newTweet',[TweetController::class, 'newTweet'])->name('tweets.new');
@@ -42,7 +43,13 @@ Route::middleware('auth')->group(function(){
     Route::get('/follow/{id}', [FollowController::class, 'follow'])->name('follow');
     Route::get('/unfollow/{id}', [FollowController::class, 'unfollow'])->name('unfollow');
 
+    //buscador
     Route::get('/search', [searchController::class, 'search'])->name('search');
+
+    //likes
+    Route::get('/like/{id}', [LikeController::class, 'like'])->name('like');
+    Route::get('/disLike/{id}', [LikeController::class, 'disLike'])->name('disLike');
+
 
     //Ruta para hacer pruebas
     Route::get('test', function(){

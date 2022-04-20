@@ -23,10 +23,22 @@ class TweetController extends Controller
         return redirect(route('home')); 
     }
 
+    public function loadTweetsFollows(){
+        //solo usuarios segidos + el mismo
+        $segidos = auth()->user()->seguido;
+        $segidos = array_column($segidos->toArray(), 'user_id');
+        $segidos[] = auth()->user()->id;
+
+        $tweets = Tweet::whereIn('user_id', $segidos)->orderBy('created_at', 'desc')->get();
+        return view('inicio', compact('tweets'));
+    }
+
     public function loadTweets(){
         //solo usuarios segidos
-        $segidos = auth()->user()->Sigue;
-        $segidos = array_column($segidos->toArray(), 'follow_id');
+        // $segidos = auth()->user()->Sigue;
+        // $segidos = array_column($segidos->toArray(), 'follow_id');
+        $segidos[] = auth()->user()->id;
+
 
         $tweets = Tweet::whereIn('user_id', $segidos)->orderBy('created_at', 'desc')->get();
         return view('inicio', compact('tweets'));

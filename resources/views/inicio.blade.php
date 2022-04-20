@@ -21,6 +21,9 @@
 
         <!-- post starts -->
         {{-- @dd($tweets) --}}
+
+
+
         @foreach ($tweets as $tweet)
             <div class="post">
                 <div class="post__avatar">
@@ -48,7 +51,34 @@
                         <div class="row">
                             <div class="d-flex justify-content-around">
                                 <div class="p-2"><span class="material-icons"> chat_bubble_outline </span></div>
-                                <div class="p-2"><span class="material-icons"> favorite_border </span></div>
+
+                                <?php
+                                $likes = auth()
+                                    ->user()
+                                    ->like()
+                                    ->where('tweet_id', $tweet->id)
+                                    ->where('user_id', auth()->user()->id)
+                                    ->get();?>
+                                @if ($likes->count() > 0)
+                                    <div class="p-2">
+                                        <a href="/disLike/{{ $tweet->id }}">
+                                            <div class="p-2">
+                                                <span class="material-icons"> favorite</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @else
+                                    <div class="p-2">
+                                        <a href="/like/{{ $tweet->id }}">
+                                            <div class="p-2">
+                                                <span class="material-icons"> favorite_border</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endif
+
+
+
                                 <div class="p-2">
                                     @if ($tweet->user_id == auth()->user()->id)
                                         <div class="dropdown">

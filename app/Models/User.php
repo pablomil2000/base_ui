@@ -53,12 +53,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Coment');
     }
 
-    public function seguido() {   //le siguen
+    public function seguido() {   //Segidos
         return $this->hasMany('App\Models\Follow', 'follow_id');
     }
 
-    public function Sigue() {  //Sigue
+    public function Sigue() {  //Es segido
         return $this->hasMany('App\Models\Follow', 'user_id');
+    }
+
+    public function Like() { 
+        return $this->hasMany('App\Models\Like');
     }
 
 }

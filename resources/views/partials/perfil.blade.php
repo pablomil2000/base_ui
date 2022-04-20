@@ -37,10 +37,10 @@
                         <h2>Publicaciones: {{ $user->tweets()->count() }}</h2>
                     </div>
                     <div class="col">
-                        <h2>Seguidores: {{ $user->seguido()->count() }}</h2>
+                        <h2>Segidores: {{ $user->Sigue()->count() }}</h2>
                     </div>
                     <div class="col">
-                        <h2>Sigue: {{ $user->Sigue()->count() }}</h2>
+                        <h2>Sigue: {{ $user->seguido()->count() }}</h2>
                     </div>
                 </div>
                 @foreach ($tweets = $user->tweets()->orderBy('created_at', 'desc')->get()
