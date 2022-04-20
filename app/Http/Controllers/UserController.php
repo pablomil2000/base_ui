@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
     public function getProfile($id){
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         return view('perfil', compact('user'));
     }
 
@@ -20,7 +20,7 @@ class UserController extends Controller
     }
 
     public function uldateProfile(Request $request){
-        $user = User::find(auth()->user()->id);
+        $user = User::findOrFail(auth()->user()->id);
         
         $ruta = "images/perfil/";
         var_dump($request->file('image'));

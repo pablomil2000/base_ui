@@ -67,29 +67,55 @@
                             <div class="post__footer">
                                 <div class="row">
                                     <div class="d-flex justify-content-around">
-                                        <div class="p-2"><span class="material-icons"> chat_bubble_outline
-                                            </span></div>
-                                        <div class="p-2"><span class="material-icons"> favorite_border
-                                            </span></div>
-                                        <div class="p-2">
-                                            <div class="dropdown">
-                                                <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                                    aria-expanded="false"
-                                                    style="border: 0; background-color: transparent">
-                                                    <span class="material-icons"> settings </span>
-                                                </button>
-
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                    <li><a class="dropdown-item"
-                                                            href="deleteTweet/{{ $tweet->id }}">borrar</a></li>
-                                                    {{-- <li><a class="dropdown-item" href="#">Another action</a></li> --}}
-                                                    {{-- <li><a class="dropdown-item" href="#">Something else here</a></li> --}}
-                                                </ul>
+                                        <div class="p-2"><span class="material-icons"> chat_bubble_outline </span></div>
+        
+                                        <?php
+                                        $likes = auth()
+                                            ->user()
+                                            ->like()
+                                            ->where('tweet_id', $tweet->id)
+                                            ->where('user_id', auth()->user()->id)
+                                            ->get();?>
+                                        @if ($likes->count() > 0)
+                                            <div class="p-2">
+                                                <a href="/disLike/{{ $tweet->id }}">
+                                                    <div class="p-2">
+                                                        <span class="material-icons"> favorite</span>
+                                                    </div>
+                                                </a>
                                             </div>
+                                        @else
+                                            <div class="p-2">
+                                                <a href="/like/{{ $tweet->id }}">
+                                                    <div class="p-2">
+                                                        <span class="material-icons"> favorite_border</span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        @endif
+        
+        
+        
+                                        <div class="p-2">
+                                            @if ($tweet->user_id == auth()->user()->id)
+                                                <div class="dropdown">
+                                                    <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                        aria-expanded="false" style="border: 0; background-color: transparent">
+                                                        <span class="material-icons"> settings </span>
+                                                    </button>
+        
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        <li><a class="dropdown-item"
+                                                                href="deleteTweet/{{ $tweet->id }}">borrar</a></li>
+                                                        {{-- <li><a class="dropdown-item" href="#">Another action</a></li> --}}
+                                                        {{-- <li><a class="dropdown-item" href="#">Something else here</a></li> --}}
+                                                    </ul>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
-
+        
                             </div>
                         </div>
                     </div>

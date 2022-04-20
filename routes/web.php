@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function(){
 
     //buscador
     Route::get('/search', [searchController::class, 'search'])->name('search');
+    Route::post('/search', [searchController::class, 'search'])->name('search');
 
     //likes
     Route::get('/like/{id}', [LikeController::class, 'like'])->name('like');
