@@ -18,7 +18,6 @@
                             <a href="/edit" class="btn btn-primary">Editar</a>
                         </div>
                     @else
-                        {{-- {{ auth()->user()->seguido()->where('user_id', $user->id)->first() }} --}}
 
                         @if (!auth()->user()->seguido()->where('user_id', $user->id)->first())
                             <div style="margin-left: 20vw">
@@ -26,7 +25,7 @@
                             </div>
                         @else
                             <div style="margin-left: 20vw">
-                                <a href="/unfollow/{{ $user->id }}" class="btn btn-danger">Dejar de seguir</a>
+                                <a href="/unfollow/{{ auth()->user()->seguido()->where('user_id', $user->id)->first()->id }}" class="btn btn-danger">Dejar de seguir</a>
                             </div>
                         @endif
 

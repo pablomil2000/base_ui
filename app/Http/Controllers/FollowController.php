@@ -10,14 +10,16 @@ class FollowController extends Controller
 {
     public function Follow($id){
         $follow = new Follow();
-        $follow->follow_id = $id;
-        $follow->user_id = auth()->user()->id;
+        $follow->follow_id = auth()->user()->id;
+        $follow->user_id = $id;
         $follow->save();
         return back();
     }
 
     public function unfollow($id){
-        $follow = Follow::where('user_id', '=', $id)->first();
+
+        //eliminar segidor
+        $follow = Follow::find($id);
         $follow->delete();
 
         return back();
