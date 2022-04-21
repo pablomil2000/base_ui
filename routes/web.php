@@ -53,9 +53,8 @@ Route::middleware('auth')->group(function(){
 
 
     //Ruta para hacer pruebas
-    Route::get('test', function(){
-        return view('test');
-    });
+    Route::get('/test', [TweetController::class, 'loadTweetsFollows'])->name('home');
+
 });
 
 Auth::routes();

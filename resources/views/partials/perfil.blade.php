@@ -19,7 +19,7 @@
                         </div>
                     @else
 
-                        @if (!auth()->user()->seguido()->where('user_id', $user->id)->first())
+                        @if (!auth()->user()->seguido()->where('user_id', $user->id)->whereNull('fecha_fin')->first())
                             <div style="margin-left: 20vw">
                                 <a href="/follow/{{ $user->id }}" class="btn btn-primary">Seguir</a>
                             </div>
@@ -37,7 +37,7 @@
                         <h2>Publicaciones: {{ $user->tweets()->count() }}</h2>
                     </div>
                     <div class="col">
-                        <h2>Segidores: {{ $user->Sigue()->count() }}</h2>
+                        <h2>Segidores: {{ $user->Sigue()->whereNull('fecha_fin')->count() }}</h2>
                     </div>
                     <div class="col">
                         <h2>Sigue: {{ $user->seguido()->count() }}</h2>

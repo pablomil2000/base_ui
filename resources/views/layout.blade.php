@@ -26,7 +26,9 @@
     @yield('menu')
     <!-- sidebar ends -->
 
-    @yield('content')
+    <div class="container m-4">
+        @yield('content')
+    </div>
 
     <!-- widgets starts -->
     @yield('lastTwet')
