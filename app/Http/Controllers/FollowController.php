@@ -23,8 +23,6 @@ class FollowController extends Controller
         $follow = Follow::find($id)->whereNull('fecha_fin')->first();
         $follow->fecha_fin = Carbon::now();
         $follow->save();
-
-        // return $id;
         
         // $follow->delete();
 

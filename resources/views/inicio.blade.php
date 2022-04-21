@@ -53,6 +53,9 @@
                                 <div class="p-2"><span class="material-icons"> chat_bubble_outline </span></div>
 
                                 <?php
+
+                                // campo calculado en el modelo     CAMBIALO!!
+
                                 $likes = auth()
                                     ->user()
                                     ->like()
