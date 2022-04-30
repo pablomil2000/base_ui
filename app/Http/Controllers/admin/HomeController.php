@@ -16,9 +16,11 @@ class HomeController extends Controller
 
     public function loadAdmin(){
         $posts = Post::all();
+
+        
         $visitas = Post::totalVisitas();
-        $numUsuarios = User::numUsuarios();
         $cantidadPosts = Post::numPost();
+        $numUsuarios = User::numUsuarios();
         return view('admin.index', compact('posts', 'cantidadPosts', 'visitas', 'numUsuarios'));
     }
 }
