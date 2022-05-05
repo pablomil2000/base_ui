@@ -6,8 +6,9 @@
                     <h2 class="post-title">{{ $post->titulo }}</h2>
                     <h3 class="post-subtitle">{!! $post->post !!}</h3>
                     <p class="post-meta">
-                        Posted by <a href="#!">{{ $post->user_id }}</a> on {{ $post->fechaPublicacion }}
+                        Posted by <a href="#!">{{ $post->user->name }}</a> on {{ $post->fechaPublicacion; }}
                     </p>
+                    <a href="{{ URL::previous() }}">Volver</a>
                 </div>
             </div>
         </div>

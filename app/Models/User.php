@@ -46,9 +46,4 @@ class User extends Authenticatable
     public function Post(){
         return $this->hasMany('App\Models\Post');
     }
-
-    public function numUsuarios(){
-        $usuarios = User::all();
-        return $usuarios->count();
-    }
 }

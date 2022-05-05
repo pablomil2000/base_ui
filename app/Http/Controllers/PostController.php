@@ -22,5 +22,4 @@ class PostController extends Controller
         $post->save();
         return view('post', compact('post'));
     }
-
 }

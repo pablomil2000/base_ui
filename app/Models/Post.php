@@ -10,13 +10,7 @@ class Post extends Model
 {
     use HasFactory;
 
-
-    public function numPost(){
-        $posts = Post::all();
-        return $posts->count();
-    }
-
-    public function totalVisitas(){
+    static public function totalVisitas(){
         $visitas = Post::all();
         $total = 0;
         foreach ($visitas as $visita) {
