@@ -16,7 +16,7 @@ class HomeController extends Controller
     }
 
     public function loadAdmin(){
-        $posts = Post::all();
+        $posts = Post::Where('user_id','=', auth()->user()->id)->get();
         $fecha = Carbon::now()->format('Y');
 
         $visitas = 0;

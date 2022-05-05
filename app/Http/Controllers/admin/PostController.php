@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 
 class PostController extends Controller
@@ -17,7 +18,9 @@ class PostController extends Controller
 
     public function formuNewPost(){
         $categorias = Category::all();
-        return view('admin.newPost', compact('categorias'));
+        $fecha = Carbon::now()->format('Y');
+
+        return view('admin.newPost', compact('fecha', 'categorias'));
     }
 
     public function newPost(Request $request){
@@ -36,8 +39,9 @@ class PostController extends Controller
         $post->category_id = $request->categoria;
         $post->fechaPublicacion = $request->fecha;
         $post->save();
+        $fecha = Carbon::now()->format('Y');
         
-        return view('admin.newPost', compact('categorias'))->with('success', 'Post creado con exito!');
+        return view('admin.newPost', compact('fecha','categorias'))->with('success', 'Post creado con exito!');
     }
 
     public function getPost($id){
@@ -47,9 +51,11 @@ class PostController extends Controller
     }
 
     public function editPost($id){
-        $post = Post::findOrFail($id);
+        $post = Post::where('user_id', '=', auth()->user()->id)->findOrFail($id);
         $categorias = Category::all();
-        return view('admin.editPost', compact('post', 'categorias'));
+        $fecha = Carbon::now()->format('Y');
+
+        return view('admin.editPost', compact('fecha','post', 'categorias'));
     }
 
     public function update(Request $request) {
