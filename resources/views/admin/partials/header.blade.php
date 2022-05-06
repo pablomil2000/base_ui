@@ -27,9 +27,30 @@
                             <div class="info clearfix">
                                 <div class="content">
                                     <h5 class="name">
-                                        <a href="#">{{ auth()->user()->name }}</a>
+                                        <a href="#">{{ auth()->user()->name }} : 
+                                            @foreach (auth()->user()->rolActivo as $rol)
+                                                {{ $rol->name }}
+                                            @endforeach
+                                        </a>
                                     </h5>
                                     <span class="email">{{ auth()->user()->email }}</span>
+                                </div>
+                            </div>
+                            <div class="info clearfix">
+                                <div class="content">
+                                    <h5 class="name">
+                                        Roles: 
+                                        <form action="/admin/cambiarRol" method="post">
+                                            @csrf
+                                            <select name="rol">
+                                                <option value="" disabled>Seleccione un rol</option>
+                                                @foreach (auth()->user()->roles as $role)
+                                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                                @endforeach
+                                            </select>
+                                                <button onclick="submit()" class="form-control btn btn-outline-secondary">Cambiar</button>
+                                        </form>
+                                    </h5>
                                 </div>
                             </div>
                             <div class="account-dropdown__footer">

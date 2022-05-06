@@ -28,6 +28,8 @@ class HomeController extends Controller
         $cantidadPosts = Post::all()->count();
         $numUsuarios = User::all()->count();
 
-        return view('admin.index', compact('fecha', 'posts', 'cantidadPosts', 'visitas', 'numUsuarios'));
+        $roles = auth()->user()->roles;
+
+        return view('admin.index', compact('roles', 'fecha', 'posts', 'cantidadPosts', 'visitas', 'numUsuarios'));
     }
 }

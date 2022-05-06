@@ -51,4 +51,9 @@ class User extends Authenticatable
     public function roles(){
         return $this->belongsToMany('App\Models\Role');
     }
+
+    public function rolActivo(){
+        $roles_activos = $this->belongsToMany('App\Models\Role')->wherePivot('active', true);
+        return $roles_activos;
+    }
 }
