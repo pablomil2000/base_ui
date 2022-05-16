@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 <div class="container">
@@ -20,4 +20,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('navbar')
+    @include('partials.navbar')
 @endsection
