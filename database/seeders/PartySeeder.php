@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Party;
 use Illuminate\Database\Seeder;
 
 class PartySeeder extends Seeder
@@ -13,6 +14,6 @@ class PartySeeder extends Seeder
      */
     public function run()
     {
-        //
+        Party::factory(100)->create();
     }
 }

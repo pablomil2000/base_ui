@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Prophecy\Call\Call;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,6 +17,10 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        $this->call(SpecialtySeeder::class);
+        $this->call(AnimatorSeeder::class);
+        $this->call(UserSeeder::class);
+        
         User::create([
             'name'=>'pablo',
             'email'=>'pablo@gmail.com',
@@ -27,5 +32,7 @@ class DatabaseSeeder extends Seeder
             'password'=>bcrypt('admin'),
             'admin'=>true
         ]);
+        $this->call(PartySeeder::class);
+        $this->call(GoSeeder::class);
     }
 }

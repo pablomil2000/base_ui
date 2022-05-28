@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PartyController;
+use App\Http\Controllers\Admin\PartyController as AdminPartyController;
 use App\Http\Controllers\Admin\SpecialtyController as AdminSpecialtyController;
 use App\Http\Controllers\Admin\AnimatorController as AdminAnimatorController;
 
@@ -32,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/acept/{id}', [PartyController::class, 'acept'])->name('acept');
 });
 
-Route::middleware('admin')->group(function () {
+Route::middleware('admin')->prefix('/admin')->group(function () {
     // Especialidades 
     Route::get('/Specialties', [AdminSpecialtyController::class, 'index'])->name('specialties');
     
@@ -55,6 +56,10 @@ Route::middleware('admin')->group(function () {
     Route::get('/editAnimador/{id}', [AdminAnimatorController::class, 'editAnimador'])->name('deleteAnimador');
     Route::post('/editAnimador/{id}', [AdminAnimatorController::class, 'update'])->name('deleteAnimador');
     
+    // Consultas
+    Route::get('/allParties', [AdminPartyController::class, 'allParties']);
+    Route::get('/partiesUser', [AdminPartyController::class, 'partiesUser']);
+
 });
 
 Auth::routes();

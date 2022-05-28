@@ -14,7 +14,9 @@ class GoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'party_id' => $this->faker->numberBetween(1, 100),
+            'animator_id' => $this->faker->numberBetween(1, 40),
+            'tiempo' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

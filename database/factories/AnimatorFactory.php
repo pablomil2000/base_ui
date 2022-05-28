@@ -14,7 +14,9 @@ class AnimatorFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'price' => $this->faker->randomFloat(0, 500, 10000),
+            'specialty_id' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

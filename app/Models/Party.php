@@ -9,12 +9,11 @@ class Party extends Model
 {
     use HasFactory;
 
-    public function Animators()
-    {
-        return $this->belongsToMany('App\Models\Animator');
-    }
-
     public function Go(){
         return $this->hasMany('App\Models\Go');
+    }
+
+    public function User(){
+        return $this->belongsTo('App\Models\User');
     }
 }

@@ -7,11 +7,13 @@ use App\Models\Party;
 use App\Models\Animator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Carbon;
 
 class PartyController extends Controller
 {
     private $precioPorHora = '10';
     private $fijos = '200';
+    private $porPersona = '35';
 
     public function newPartyform()
     {
@@ -26,23 +28,26 @@ class PartyController extends Controller
         $validated = $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
-            'fecha' => 'required',
+            'fecha' => 'required| after:'. date('Y-m-d'),
             'lugar' => 'required',
             'duracion' => 'required',
             'hora' => 'required',
+            'asistentes' => 'required',
         ]);
 
 
         // @dd($request->all());
 
-        $precio = $this->fijos + ($this->precioPorHora * $request->duracion);
+        $precio = $this->fijos + ($this->precioPorHora * $request->duracion) + ($this->porPersona * $request->asistentes);
         
         $party = new Party;
 
         foreach ($request->animador as $key => $animador){
-            $animator = Animator::findOrFail($key);
-            // $party->Animators()->attach($animador);
-            $precio += $animator->price;
+            if ($animador!=0) {
+                $animator = Animator::findOrFail($key);
+                // $party->Animators()->attach($animador);
+                $precio += $animator->price;
+            }
         }
 
         $party->titulo = $request->titulo;
@@ -53,22 +58,28 @@ class PartyController extends Controller
         $party->hora = $request->hora;
         $party->user_id = auth()->user()->id;
         $party->precio = $precio;
+        $party->asistentes = $request->asistentes;
         $party->save();
 
         foreach ($request->animador as $key => $animador){
-            $Go = new Go();
-            $Go->party_id = $party->id;
-            $Go->animator_id = $key;
-            $Go->tiempo= $animador;
-            $Go->save();
+            if ($animador!=0) {
+                $Go = new Go();
+                $Go->party_id = $party->id;
+                $Go->animator_id = $key;
+                $Go->tiempo= $animador;
+                $Go->save();
+            }
         }
         // return $party->id;
         return redirect(url('indexParties'));
     }
 
     public function index(){
-        
         $parties = Party::where('user_id', auth()->user()->id)->get();
+        
+        // $result = Carbon::createFromFormat('Y-m-d', $myDate)->diffForHumans();
+
+        // return($result);
         return view('indexParties', compact('parties'));
     }
 

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Go;
 use Illuminate\Database\Seeder;
 
 class GoSeeder extends Seeder
@@ -13,6 +14,6 @@ class GoSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Go::factory(100)->create();
     }
 }

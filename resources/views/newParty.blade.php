@@ -43,6 +43,21 @@
                             </div>
 
                             <div class="row mb-3">
+                                <label for="asistentes" class="col-md-4 col-form-label text-md-end">{{ __('asistentes') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="asistentes" type="number" min="0" class="form-control @error('asistentes') is-invalid @enderror"
+                                        name="asistentes" value="{{ old('asistentes') }}" required autofocus>
+
+                                    @error('asistentes')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
                                 <label for="fecha" class="col-md-4 col-form-label text-md-end">{{ __('fecha') }}</label>
 
                                 <div class="col-md-6">
@@ -126,7 +141,7 @@
                                                     {{-- <th scope="row">{{ $animator->id }}</th> --}}
                                                     <td>{{ $animator->name }}</td>
                                                     <td>{{ $animator->Specialty->name }}</td>
-                                                    <td>{{ $animator->price }} €</td>
+                                                    <td>{{ number_format($animator->price,2) }} €</td>
                                                     <td><input class="form-control text-center" type="number" min="0"
                                                             value="0" name="animador[{{ $animator->id }}]"></td>
                                                 </tr>

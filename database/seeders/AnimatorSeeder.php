@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Animator;
 use Illuminate\Database\Seeder;
+use Prophecy\Call\Call;
 
 class AnimatorSeeder extends Seeder
 {
@@ -13,6 +15,6 @@ class AnimatorSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Animator::factory()->count(40)->create();
     }
 }

@@ -18,6 +18,13 @@
         rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.js"></script>
+
+
 </head>
 
 <body>
@@ -37,12 +44,12 @@
                                 Animadores
                             </a>
                             <div class="dropdown-menu">
-                                <a class="nav-link" href="/newAnimador">Alta Animador</a>
-                                <a class="nav-link" href="/Animador">Animador</a>
+                                <a class="nav-link" href="/admin/newAnimador">Alta Animador</a>
+                                <a class="nav-link" href="/admin/Animador">Animador</a>
                             </div>
                         </div>
 
-                        <a class="btn dropdown nav-link text-white" href="/Specialties">Especialidades</a>
+                        <a class="btn dropdown nav-link text-white" href="/admin/Specialties">Especialidades</a>
 
                         <div class="dropdown">
                             <a class="btn dropdown nav-link text-white" href="#" role="button" id="dropdownMenuLink"
@@ -50,11 +57,8 @@
                                 Consultas
                             </a>
                             <div class="dropdown-menu">
-                                <a class="nav-link" href="codigo/principal.php?consultaespecialidad">Todas las
-                                    especialidades</a>
-                                <a class=" nav-link" href="codigo/principal.php?consultafiestas">Todas las fiestas</a>
-                                <a class=" nav-link" href="codigo/principal.php?consultafiestas">Fiestas por
-                                    cliente</a>
+                                <a class=" nav-link" href="/admin/allParties">Todas las fiestas</a>
+                                <a class=" nav-link" href="/admin/partiesUser">Fiesta por cliete</a>
                             </div>
                         </div>
                     @else
@@ -93,8 +97,8 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 order-lg-2">
-                    <div class="p-5"><img class="img-fluid rounded-circle" src="{{ asset('assets/img/01.jpg') }}"
-                            alt="..." /></div>
+                    <div class="p-5"><img class="img-fluid rounded-circle"
+                            src="{{ asset('assets/img/01.jpg') }}" alt="..." /></div>
                 </div>
                 <div class="col-lg-6 order-lg-1">
                     <div class="p-5">
@@ -111,8 +115,8 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <div class="p-5"><img class="img-fluid rounded-circle" src="{{ asset('assets/img/02.jpg') }}"
-                            alt="..." /></div>
+                    <div class="p-5"><img class="img-fluid rounded-circle"
+                            src="{{ asset('assets/img/02.jpg') }}" alt="..." /></div>
                 </div>
                 <div class="col-lg-6">
                     <div class="p-5">
@@ -130,8 +134,8 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 order-lg-2">
-                    <div class="p-5"><img class="img-fluid rounded-circle" src="{{ asset('assets/img/03.jpg') }}"
-                            alt="..." /></div>
+                    <div class="p-5"><img class="img-fluid rounded-circle"
+                            src="{{ asset('assets/img/03.jpg') }}" alt="..." /></div>
                 </div>
                 <div class="col-lg-6 order-lg-1">
                     <div class="p-5">

@@ -17,8 +17,9 @@ class CreatePartiesTable extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('descripcion');
-            $table->string('fecha');
+            $table->date('fecha');
             $table->string('lugar');
+            $table->integer('asistentes');
             $table->string('hora');
             $table->string('duracion');
             $table->string('precio');
