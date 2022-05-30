@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RecipeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [RecipeController::class, 'home']);
+
+Route::get('/home', [RecipeController::class, 'home']);
+
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/newRecipe', [RecipeController::class, 'newForm'])->name('newRecipe');
+    Route::post('/newRecipe', [RecipeController::class, 'addRecipe']);
+
+    Route::get('/recipes',[RecipeController::class, 'index'])->name('recipes');
+
+    Route::get('/recipes/{id}',[RecipeController::class, 'show'])->name('recipes.show');
+
+    Route::get('/recipes/{id}/edit',[RecipeController::class, 'editForm'])->name('recipes.edit');
+    Route::post('/recipes/{id}/edit',[RecipeController::class, 'update']);
+    
+    Route::get('/recipes/{id}/delete',[RecipeController::class, 'delete'])->name('recipes.delete');
+    
+});
