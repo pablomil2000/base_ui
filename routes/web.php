@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\AuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('inicio');
+})->name('home');
+
+Route::get('/paginacion1', [BookController::class, 'filter'])->name('paginacion1');
+Route::post('/paginacion1', [BookController::class, 'filter']);
+
+Route::get('/paginacion2', [AuthorController::class, 'filter'])->name('paginacion2');
+Route::post('/paginacion2', [AuthorController::class, 'filter']);
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
