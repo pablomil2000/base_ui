@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container">
-        <form method="post" action="{{ route('paginacion1') }}?page=1">
+        <form method="post" action="{{ route('paginacion1') }}">
             @csrf
             <div class="row justify-content-center">
                 <div class="col-md-4">
@@ -107,7 +107,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <a href="{{ route('paginacion1') }}?page=1">borrar filtros</a>
+                <a href="{{ route('paginacion1') }}">borrar filtros</a>
             </div>
         </form>
         <div class="row justify-content-center">

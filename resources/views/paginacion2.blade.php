@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container">
-        <form method="post" action="{{ route('paginacion2') }}?page=1">
+        <form method="post" action="{{ route('paginacion2') }}">
             @csrf
             <div class="row justify-content-center">
                 <div class="col-md-4">
