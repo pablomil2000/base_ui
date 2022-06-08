@@ -1,23 +1,26 @@
-@extends('layouts.app')
+@extends('layouts.layout')
+
+@section('navbar')
+    @include('partials.navbar')
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+    <div id="hello">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 centered">
+                    <h1>Bolt Template</h1>
+                    <h2>Awesome Bootstrap Template</h2>
                 </div>
+                <!-- /col-lg-8 -->
             </div>
+            <!-- /row -->
         </div>
+        <!-- /container -->
     </div>
-</div>
+    <!-- /hello -->
+@endsection
+
+@section('content2')
+    @include('partials.coches1')
 @endsection
