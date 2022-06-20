@@ -1,4 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.layout')
+
+@section('header')
+    @include('partials.header')
+@endsection
+
+@section('footer')
+    @include('partials.footer')
+@endsection
 
 @section('content')
 <div class="container">
