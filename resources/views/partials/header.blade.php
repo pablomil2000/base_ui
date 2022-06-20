@@ -30,6 +30,10 @@
                         @else
                             <div class="header__top__right__language">
 
+
+                                @if (auth()->user()->admin)
+                                    <a href="{{ route('admin.dashboard') }}" style="color:#000"><i class="fa fa-user"></i> {{ auth()->user()->name }}</a>
+                                @endif
                                 <a id="navbarDropdown" href="{{ route('cart') }}" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

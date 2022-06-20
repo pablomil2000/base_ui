@@ -46,10 +46,4 @@ class HomeController extends Controller
         $texto = 'productos de la categoria <u>'.$category->name .'</u>';
         return view('shop', compact('productos', 'texto'));
     }
-
-    public function Admin(){
-        $categorias = Category::all();
-        $productos = Product::latest()->take(8)->get();
-        return view('inicio', compact('categorias', 'productos'));
-    }
 }

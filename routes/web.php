@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\admin\ProductController as adminProductController;
 use App\Http\Controllers\CartDetailsController;
+use App\Http\Controllers\admin\homeController as adminHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +37,9 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
+    Route::get('/admin/dashboard', [adminHomeController::class, 'admin'])->name('admin.dashboard');
+    Route::get('/admin/products', [adminProductController::class, 'index'])->name('admin.product.list');
+    Route::get('/admin/product/{id}/edit', [adminProductController::class, 'edit'])->name('admin.product.edit');
 });
 
 
