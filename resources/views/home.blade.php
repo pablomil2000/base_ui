@@ -8,6 +8,7 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
+                    <a href="{{ route(auth()->user()->rol .'.home') }}">tipo de usaurio: {{ auth()->user()->rol }}</a>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
