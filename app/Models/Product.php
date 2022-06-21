@@ -18,4 +18,15 @@ class Product extends Model
     {
         return $this->hasMany(CartDetails::class);
     }
+
+    public function getUrlImagesAttribute()
+    {
+        $url = substr($this->image, 0, 4);
+
+        if ($url != 'http') {
+            return false;
+        }
+
+        return true;
+    }
 }

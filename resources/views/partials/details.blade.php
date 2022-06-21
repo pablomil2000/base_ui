@@ -5,7 +5,12 @@
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__pic">
                     <div class="product__details__pic__item">
-                        <img alt="" src="{{ $product->image }}">
+
+                        @if ($product->UrlImages)
+                            <img alt="" src="{{ $product->image }}">
+                            @else
+                            <img alt="" src="/images/{{ $product->image }}">
+                        @endif
                     </div>
                     {{-- <div class="product__details__pic__slider owl-carousel">
                         <img data-imgbigurl="img/product/details/product-details-2.jpg" src="img/product/details/thumb-1.jpg" alt="">

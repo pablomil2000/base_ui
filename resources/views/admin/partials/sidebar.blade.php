@@ -17,6 +17,19 @@
                         <i class="fas fa-box"></i>Productos</a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                         <li>
+                            <a href="{{ route('admin.product.new') }}">Nueva</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.product.list') }}">List</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-book"></i>Categorias</a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
                             <a href="{{ route('admin.product.list') }}">List</a>
                         </li>
                     </ul>

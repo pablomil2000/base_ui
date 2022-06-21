@@ -20,4 +20,18 @@ class CartController extends Controller
         $cart->save();
         return redirect('/')->with('success', 'Tu pedido se ha realizado correctamente');
     }
+
+    public function index(){
+        $user = auth()->user();
+        $carts = $user->Carts;
+
+        return view('cart.index', compact('carts'));
+    }
+
+    public function show($id){
+        $user = auth()->user();
+        $cart = $user->Carts->findOrFail($id);
+
+        return view('cart.cartDetail', compact('cart'));
+    }
 }

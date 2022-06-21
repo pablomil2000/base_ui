@@ -33,7 +33,7 @@
                     <td>
                         <a href="{{ url('product/'.$product->id) }}">view</a>
                         <a href="{{ url('admin/product/'.$product->id).'/edit' }}">Edit</a>
-                        <a href="">Delete</a>
+                        <a href="{{ url('admin/product/'.$product->id).'/delete' }}">Delete</a>
                     </td>
                 </tr>
             @endforeach

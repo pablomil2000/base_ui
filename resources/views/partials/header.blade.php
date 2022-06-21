@@ -32,9 +32,10 @@
 
 
                                 @if (auth()->user()->admin)
-                                    <a href="{{ route('admin.dashboard') }}" style="color:#000"><i class="fa fa-user"></i> {{ auth()->user()->name }}</a>
+                                    <a href="{{ route('admin.dashboard') }}" style="color:#000"><i class="fa fa-user"></i> Administracion</a>
                                 @endif
-                                <a id="navbarDropdown" href="{{ route('cart') }}" role="button"
+
+                                <a id="navbarDropdown" href="{{ route('pedidos') }}" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
@@ -45,7 +46,6 @@
                                     </a>
                                 </div>
                                 
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>

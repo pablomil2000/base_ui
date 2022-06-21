@@ -20,28 +20,37 @@
                                 </tr>
                             @else
                                 @foreach ($cart->CartDetails as $detalle)
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="{{ $detalle->product->image }}" height="250" alt="">
-                                        <h5>{{ $detalle->product->name }}</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        {{ $detalle->price }} €
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        {{ $detalle->quantity }}
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        {{ $detalle->product->price * $detalle->quantity }} €
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <form action="" method="post">
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{ $detalle->id }}">
-                                            <button style="border: 0; background: transparent" class="icon_close"></button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td class="shoping__cart__item">
+                                            @if ($detalle->product->UrlImages)
+                                                <img alt="" src="{{ $detalle->product->image }}">
+                                            @else
+                                                <img alt="" src="/images/{{ $detalle->product->image }}">
+                                            @endif
+                                            <h5>{{ $detalle->product->name }}</h5>
+                                        </td>
+                                        <td class="shoping__cart__price">
+                                            {{ $detalle->price }} €
+                                        </td>
+                                        <td class="shoping__cart__quantity">
+                                            {{ $detalle->quantity }}
+                                        </td>
+                                        <td class="shoping__cart__total">
+                                            {{ $detalle->product->price * $detalle->quantity }} €
+                                        </td>
+                                        <td class="shoping__cart__item__close">
+                                            <form action="" method="post">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $detalle->id }}">
+
+
+                                                <button style="border: 0; background: transparent"
+                                                    class="icon_close"></button>
+
+
+                                            </form>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             @endempty
                         </tbody>
@@ -61,9 +70,10 @@
                     <ul>
                         {{-- @dd($cart) --}}
                         @if ($cart)
-                            <li>Total <span>{{ $cart->TotalCarrito }} €</span></li>
-                            <a href="{{ route('checkout') }}" class="primary-btn">PROCEED TO CHECKOUT</a>
-
+                        <li>Total <span>{{ $cart->TotalCarrito }} €</span></li>
+                            @if ($cart->is_active == 1)
+                                <a href="{{ route('checkout') }}" class="primary-btn">PROCEED TO CHECKOUT</a>
+                            @endif
                         @else
                             <li>Total <span>0 €</span></li>
                         @endif

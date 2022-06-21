@@ -34,12 +34,23 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [CartDetailsController::class, 'show'])->name('cart');
     Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
     Route::post('/cart', [CartDetailsController::class, 'delete'])->name('cart.delete');
+
+    Route::get('/pedidos', [CartController::class, 'index'])->name('pedidos');
+    Route::get('/pedidos/{id}', [CartDetailsController::class, 'show'])->name('pedidos.show');
+
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [adminHomeController::class, 'admin'])->name('admin.dashboard');
     Route::get('/admin/products', [adminProductController::class, 'index'])->name('admin.product.list');
+
+    Route::get('/admin/product/new', [adminProductController::class, 'newForm'])->name('admin.product.new');
+    Route::post('/admin/product/new', [adminProductController::class, 'new'])->name('admin.product.new');
+
     Route::get('/admin/product/{id}/edit', [adminProductController::class, 'edit'])->name('admin.product.edit');
+    Route::post('/admin/product/{id}/edit', [adminProductController::class, 'update'])->name('admin.product.update');
+
+    Route::get('/admin/product/{id}/delete', [adminProductController::class, 'delete'])->name('admin.product.delete');
 });
 
 

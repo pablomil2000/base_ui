@@ -26,7 +26,8 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ $product->name }}" required>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}"
+                        required>
                     @if ($errors->has('name'))
                         <span class="help-block">
                             <strong>{{ $errors->first('name') }}</strong>
@@ -41,7 +42,7 @@
                         <option value="">Seleccione una categoría</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}"
-                                {{ $product->category_id == $category->id ? 'selected' : '' }}>
+                                {{ $category->id == old('category_id') ? 'selected' : '' }}>
                                 {{ $category->name }}
                             </option>
                         @endforeach
@@ -58,7 +59,7 @@
         <div class="row">
             <div class="form-group">
                 <label for="description">Descripción</label>
-                <textarea class="form-control" id="summernote" name="description" rows="3">{{ $product->description }}</textarea>
+                <textarea class="form-control" id="summernote" name="description" rows="3">{{ old('description') }}</textarea>
                 @if ($errors->has('description'))
                     <span class="help-block">
                         <strong>{{ $errors->first('description') }}</strong>
@@ -71,7 +72,7 @@
                 <div class="form-group">
                     <label for="price">Precio</label>
                     <input type="text" class="form-control" id="price" name="price" required
-                        value="{{ $product->price }}">
+                        value="{{ old('price') }}">
                     @if ($errors->has('price'))
                         <span class="help-block">
                             <strong>{{ $errors->first('price') }}</strong>
